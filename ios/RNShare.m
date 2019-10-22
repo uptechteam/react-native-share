@@ -197,7 +197,7 @@ RCT_EXPORT_METHOD(open:(NSDictionary *)options
     shareController.completionWithItemsHandler = ^(NSString *activityType, BOOL completed, __unused NSArray *returnedItems, NSError *activityError) {
         if (activityError) {
             failureCallback(activityError);
-        } else {
+        } else if (completed || activityType == nil) {
             successCallback(@[@(completed), RCTNullIfNil(activityType)]);
         }
     };
